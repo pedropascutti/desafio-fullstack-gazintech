@@ -44,3 +44,11 @@ controller:
 model:
 	@docker exec -it backend_container bash -c "php artisan make:model $(name)"
 
+resource:
+	@docker exec -it backend_container bash -c "php artisan make:resource $(name)"
+
+request:
+	@docker exec -it backend_container bash -c "php artisan make:request $(name)"
+
+optimize:
+	@docker exec -it backend_container bash -c "php artisan optimize:clear"
