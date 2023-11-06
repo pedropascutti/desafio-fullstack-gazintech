@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Developer extends Model
@@ -20,9 +20,9 @@ class Developer extends Model
         'hobby'
     ];
 
-    public function level():HasOne
+    public function level():BelongsTo
     {
-        return $this->hasOne(Level::class);
+        return $this->BelongsTo(Level::class);
     }
 
 }

@@ -1,13 +1,237 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+  .nav-item {
+    @apply p-2
+    mr-3
+    my-4
+    bg-indigo-500 
+    hover:bg-indigo-700 
+    text-white
+    rounded-md 
+    duration-150
+    font-medium;
+  }
+
+  .items-list {
+    @apply relative 
+    overflow-x-auto 
+    shadow-md 
+    sm:rounded-lg;
+  }
+
+  .table {
+    @apply w-full 
+    text-sm
+    font-medium
+    text-left 
+    text-gray-300;
+  }
+
+  .table__caption {
+    @apply p-5 
+    text-2xl 
+    font-bold 
+    text-left 
+    text-white 
+    bg-gray-800;
+  }
+
+  .table__caption-content {
+    @apply flex 
+    justify-between 
+    items-center;
+  }
+
+  .table__head {
+    @apply text-xs 
+    uppercase 
+    bg-gray-700 
+    text-gray-400;
+  }
+
+  .table__head-content {
+    @apply px-6 
+    py-3;
+  }
+
+  .table__head-content--right {
+    @apply float-right 
+    mr-2;
+  }
+
+  .table__body {
+    @apply divide-y;
+  }
+
+  .table__row {
+    @apply bg-gray-800 
+    border-gray-700;
+  }
+
+  .table__cell {
+    @apply px-6 
+    py-4;
+  }
+
+  .table__cell-main {
+    @apply font-semibold 
+    whitespace-nowrap 
+    text-white
+    text-base;
+  }
+
+  .delete-modal {
+    @apply text-center
+    bg-gray-600;
+  }
+
+  .delete-modal__icon {
+    @apply w-full
+    flex
+    justify-center;
+  }
+
+  .delete-modal__message {
+    @apply mb-5 
+    text-xl
+    font-medium
+    text-gray-200;
+  }
+
+  .delete-modal__button {
+    @apply text-white
+    uppercase
+    font-bold
+    text-sm
+    p-3
+    rounded-md
+    bg-slate-400
+    hover:bg-gray-500
+    duration-200;
+  }
+
+  .delete-modal__button--delete {
+    @apply bg-rose-500
+    hover:bg-red-600;
+  }
+
+  .form__header {
+    @apply bg-slate-800
+    border-slate-800;
+  }
+
+  .form__header-title {
+    @apply text-gray-200
+    font-bold
+    text-2xl;
+  }
+
+  .form__body {
+    @apply bg-gray-700;
+  }
+
+  .form__body-label {
+    @apply block 
+    text-base 
+    font-medium 
+    text-white;
+  }
+
+  .form__body-input {
+    @apply bg-gray-50 
+    border 
+    border-gray-300 
+    text-gray-900 
+    text-sm 
+    rounded-lg 
+    focus:ring-blue-500 
+    focus:border-blue-500 
+    block 
+    w-full 
+    p-2.5;
+  }
+
+  .form__body-input-radio {
+    @apply w-4 
+    h-4 
+    text-indigo-500 
+    bg-gray-100 
+    border-gray-300 
+    focus:ring-0
+    mr-1;
+  }
+
+  .form__body-group {
+    @apply mb-2 
+    grid
+    gap-3
+    md:grid-cols-2
+    flex
+    items-center;
+  }
+
+  .form__body-button {
+    @apply text-white
+    bg-indigo-500
+    hover:bg-indigo-600
+    duration-200
+    focus:ring-1 
+    focus:outline-none
+    focus:ring-indigo-700
+    font-bold 
+    uppercase
+    rounded-lg 
+    text-sm 
+    w-full
+    px-5 
+    py-2.5
+    text-center
+    mt-4;
+  }
+
+  .form__footer {
+    @apply bg-slate-800;
+  }
+
+  .form__footer-button {
+    @apply text-white
+    uppercase
+    font-bold
+    text-sm
+    p-2
+    rounded-md
+    bg-slate-400
+    hover:bg-gray-500
+    duration-200;
+  }
+
+  .pagination {
+    @apply float-right
+    mt-2;
+  }
+
+  .pagination__list {
+    @apply flex 
+    items-center 
+    text-sm
+  }
+
+  .pagination__list-item {
+    @apply flex 
+    items-center 
+    justify-center 
+    px-3 
+    h-5 
+    text-white
+    bg-slate-800
+    border
+    border-slate-900
+    duration-100
+    hover:text-gray-200
+    hover:bg-slate-900
+    hover:cursor-pointer
+  }
 }

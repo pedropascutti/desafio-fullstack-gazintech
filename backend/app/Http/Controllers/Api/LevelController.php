@@ -12,7 +12,7 @@ class LevelController extends Controller
 {
     public function index()
     {
-        $levels = Level::paginate();
+        $levels = Level::paginate(10);
         foreach ($levels as $level) {
             $level['developers_amount'] = $level->developers->count();
         }
@@ -41,8 +41,7 @@ class LevelController extends Controller
     public function destroy(string $id)
     {
         $level = Level::findOrFail($id);
-
-        if ($level->developers) {
+        if (count($level->developers) > 0) {
             return  response()->json([
                 "error" => "Existem desenvolvedores associados à este nível"
             ], Response::HTTP_NOT_IMPLEMENTED);
