@@ -13,7 +13,10 @@ class DeveloperController extends Controller
 {
     public function index()
     {
-        $developers = Developer::paginate();
+        $developers = Developer::paginate(10);
+        foreach ($developers as $developer) {
+            $developer["level"] = $developer->level->name;
+        }
 
         return DeveloperResource::collection($developers);
     }

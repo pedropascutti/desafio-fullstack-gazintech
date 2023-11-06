@@ -18,6 +18,7 @@ class DeveloperResource extends JsonResource
         $array = [
             'id' => $this->id,
             'level_id' => $this->level_id,
+            'level' => $this->level,
             'name' => $this->name,
             'gender' => $this->gender,
             'birth_date' => $this->birth_date,
