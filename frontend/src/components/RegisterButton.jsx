@@ -17,6 +17,7 @@ export const RegisterButton = ({ onClick }) => {
           font-semibold
           rounded-md 
           p-2 
+          px-3
           duration-150
         "
       >

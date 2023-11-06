@@ -98,25 +98,25 @@ export const DeveloperIndex = () => {
             {[...Array(skeleton)].map((e, i) => (
               <tr key={i} className="table__row">
                 <td className="table__cell">
-                  <div class="skeleton__content w-24"></div>
+                  <div className="skeleton__content w-24"></div>
                 </td>
                 <td className="table__cell">
-                  <div class="skeleton__content"></div>
+                  <div className="skeleton__content"></div>
                 </td>
                 <td className="table__cell">
-                  <div class="skeleton__content"></div>
+                  <div className="skeleton__content"></div>
                 </td>
                 <td className="table__cell">
-                  <div class="skeleton__content"></div>
+                  <div className="skeleton__content"></div>
                 </td>
                 <td className="table__cell">
-                  <div class="skeleton__content"></div>
+                  <div className="skeleton__content"></div>
                 </td>
                 <td className="table__cell">
-                  <div class="skeleton__content"></div>
+                  <div className="skeleton__content"></div>
                 </td>
                 <td className="table__cell justify-end flex">
-                  <div class="skeleton__content"></div>
+                  <div className="skeleton__content"></div>
                 </td>
               </tr>
             ))}
