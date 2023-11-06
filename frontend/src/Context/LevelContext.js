@@ -16,7 +16,8 @@ export const LevelProvider = ({ children }) => {
     const [formValues, setFormValues] = useState(initialForm);
     const [errors, setErrors] = useState({});
     const [links, setLinks] = useState([]);
-    const [meta, setMeta] = useState([])
+    const [meta, setMeta] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const setPaginatedData = (response) => {
         setLevels(response.data.data);
@@ -26,8 +27,16 @@ export const LevelProvider = ({ children }) => {
 
     const getLevels = async (link) => {
         if (link !== null) {
-            const response = await axios.get(link);
-            setPaginatedData(response);
+            setIsLoading(true);
+
+            try {
+                const response = await axios.get(link);
+                setPaginatedData(response);
+            } catch (e) {
+                setErrors(e);
+            } finally {
+                setIsLoading(false);
+            }
         }
     }
 
@@ -107,7 +116,8 @@ export const LevelProvider = ({ children }) => {
             updateLevel,
             deleteLevel,
             previousPage,
-            nextPage
+            nextPage,
+            isLoading
          }}
         >
             {children}

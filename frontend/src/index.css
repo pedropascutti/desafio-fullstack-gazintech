@@ -234,4 +234,12 @@
     hover:bg-slate-900
     hover:cursor-pointer
   }
+
+  .skeleton__content {
+    @apply h-2.5
+    bg-gray-300 
+    rounded-full
+    w-12 
+    mb-2.5;
+  }
 }
