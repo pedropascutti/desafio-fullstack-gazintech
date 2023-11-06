@@ -25,4 +25,38 @@ class Developer extends Model
         return $this->BelongsTo(Level::class);
     }
 
+    public function scopeName($query, $name = null)
+    {
+        if (!is_null($name)) {
+            $query->where('name', 'LIKE', "%$name%");
+        }
+    }
+
+    public function scopeLevelId($query, $level_id = null)
+    {
+        if (!is_null($level_id)) {
+            $query->where("level_id", "=", $level_id);
+        }
+    }
+
+    public function scopeGender($query, $gender = null)
+    {
+        if (!is_null($gender)) {
+            $query->where("gender", "=", $gender);
+        }
+    }
+
+    public function scopeAge($query, $age = null)
+    {
+        if (!is_null($age)) {
+            $query->where("age", "=", $age);
+        }
+    }
+
+    public function scopeHobby($query, $hobby = null)
+    {
+        if (!is_null($hobby)) {
+            $query->whereRaw('hobby', 'LIKE', "%$hobby%");
+        }
+    }
 }
