@@ -19,4 +19,11 @@ class Level extends Model
     {
         return $this->hasMany(Developer::class);
     }
+
+    public function scopeName($query, $name = null)
+    {
+        if (!is_null($name)) {
+            $query->where('name', 'LIKE', "%$name%");
+        }
+    }
 }

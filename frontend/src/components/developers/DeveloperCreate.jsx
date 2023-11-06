@@ -55,6 +55,9 @@ export const DeveloperCreate = ({ show, onClose }) => {
                     </option>
                   ))}
                 </select>
+                {errors.level_id && (
+                  <span className="text-sm font-medium text-red-400">{errors.level_id[0]}</span>
+                )}
               </div>
               <div>
                 <label className="form__body-label">Sexo</label>

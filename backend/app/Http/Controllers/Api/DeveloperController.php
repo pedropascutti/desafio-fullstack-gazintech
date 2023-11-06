@@ -11,9 +11,13 @@ use Illuminate\Http\Response;
 
 class DeveloperController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $developers = Developer::paginate(10);
+        $developers = Developer::name($request->name)
+        ->levelId($request->level_id)
+        ->gender($request->gender)
+        ->age($request->age)
+        ->paginate(10);
         foreach ($developers as $developer) {
             $developer["level"] = $developer->level->name;
         }

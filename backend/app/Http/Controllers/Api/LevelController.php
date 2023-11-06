@@ -6,13 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LevelRequest;
 use App\Http\Resources\LevelResource;
 use App\Models\Level;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class LevelController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $levels = Level::paginate(10);
+        $levels = Level::name($request->name)
+        ->paginate(10);
         foreach ($levels as $level) {
             $level['developers_amount'] = $level->developers->count();
         }
