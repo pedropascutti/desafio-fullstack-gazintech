@@ -3,10 +3,11 @@ import { RegisterButton } from "../RegisterButton";
 import { LevelCreate } from "./LevelCreate";
 import LevelContext from "../../Context/LevelContext";
 import { FaPenToSquare, FaTrash } from "react-icons/fa6";
-import { MdOutlineNavigateNext, MdNavigateBefore } from "react-icons/md";
+import { MdOutlineNavigateNext, MdNavigateBefore, MdSearch } from "react-icons/md";
 import { IconContext } from "react-icons";
 import { LevelEdit } from "./LevelEdit";
 import { LevelDelete } from "./LevelDelete";
+import { LevelFilter } from "./LevelFilter";
 
 export const LevelIndex = () => {
   const { levels, getLevels, getLevel, previousPage, nextPage, isLoading } = useContext(LevelContext);
@@ -44,6 +45,13 @@ export const LevelIndex = () => {
 
   const skeleton = 6;
 
+  const [openFilterModal, setOpenFilterModal] = useState(false);
+  const handleFilterOpen = () => setOpenFilterModal(true);
+  const handleFilterClose = () => setOpenFilterModal(false);
+  const handleFilterClick = () => {
+    handleFilterOpen();
+  }
+
   useEffect(() => {
     getLevels("http://localhost:8000/levels");
   }, []);
@@ -56,6 +64,7 @@ export const LevelIndex = () => {
     handleRegisterClose();
     handleEditClose();
     handleDeleteClose();
+    handleFilterClose();
   }, [levels]);
 
   return (
@@ -65,7 +74,12 @@ export const LevelIndex = () => {
           <caption className="table__caption">
             <div className="table__caption-content">
               Listagem de Níveis
-              <RegisterButton onClick={handleRegisterOpen} />
+              <div className="flex items-center gap-6">
+                <button className="filter__button" onClick={handleFilterClick}>
+                  <MdSearch/> Filtrar
+                </button>
+                <RegisterButton onClick={handleRegisterOpen} />
+              </div>
             </div>
           </caption>
           <thead className="table__head">
@@ -86,13 +100,13 @@ export const LevelIndex = () => {
             {[...Array(skeleton)].map((e, i) => (
               <tr key={i} className="table__row">
                 <td className="table__cell">
-                  <div class="skeleton__content w-24"></div>
+                  <div className="skeleton__content w-24"></div>
                 </td>
                 <td className="table__cell">
-                  <div class="skeleton__content"></div>
+                  <div className="skeleton__content"></div>
                 </td>
                 <td className="table__cell justify-end flex">
-                  <div class="skeleton__content"></div>
+                  <div className="skeleton__content"></div>
                 </td>
               </tr>
             ))}
@@ -147,6 +161,7 @@ export const LevelIndex = () => {
       <LevelCreate show={openRegisterModal} onClose={handleRegisterClose} />
       <LevelEdit show={openEditModal} onClose={handleEditClose} />
       <LevelDelete show={openDeleteModal} onClose={handleDeleteClose} levelId={id} />
+      <LevelFilter show={openFilterModal} onClose={handleFilterClose} />
     </>
   );
 };

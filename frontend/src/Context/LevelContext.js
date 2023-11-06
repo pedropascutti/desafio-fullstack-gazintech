@@ -10,6 +10,10 @@ const initialForm = {
     name: ""
 }
 
+const initialFilterForm = {
+    name: ""
+}
+
 export const LevelProvider = ({ children }) => {
     const [levels, setLevels] = useState([]);
     const [level, setLevel] = useState([]);
@@ -18,6 +22,7 @@ export const LevelProvider = ({ children }) => {
     const [links, setLinks] = useState([]);
     const [meta, setMeta] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [filterFormValues, setFilterFormValues] = useState(initialFilterForm);
 
     const setPaginatedData = (response) => {
         setLevels(response.data.data);
@@ -25,8 +30,25 @@ export const LevelProvider = ({ children }) => {
         setMeta(response.data.meta)
     }
 
-    const getLevels = async (link) => {
+    const getLevels = async (link, params = null) => {
         if (link !== null) {
+            if (params !== null) {
+                setIsLoading(true);
+                try {
+                    const response = await axios.get(link, {
+                        params: {
+                            name: params.name
+                        }
+                    })
+                    setPaginatedData(response);
+                } catch (e) {
+                    setErrors(e);
+                } finally {
+                    setIsLoading(false);
+                }
+                return
+            }
+
             setIsLoading(true);
 
             try {
@@ -40,11 +62,31 @@ export const LevelProvider = ({ children }) => {
         }
     }
 
+    const onFilterChange = (e) => {
+        const { name, value } = e.target;
+        setFilterFormValues({...filterFormValues, [name]: value})
+    }
+
+    const handleFilterSubmit = (e) => {
+        e.preventDefault();
+        getLevels(`${baseUrl}/levels`, filterFormValues);
+      }
+
     const previousPage = async () => {
+        if (filterFormValues !== initialFilterForm) {
+            getLevels(links.prev, filterFormValues);
+            return
+        }
+        
         await getLevels(links.prev);
     }
 
     const nextPage = async () => {
+        if (filterFormValues !== initialFilterForm) {
+            getLevels(links.next, filterFormValues);
+            return
+        }
+
         await getLevels(links.next);
     }
 
@@ -117,7 +159,10 @@ export const LevelProvider = ({ children }) => {
             deleteLevel,
             previousPage,
             nextPage,
-            isLoading
+            isLoading,
+            filterFormValues,
+            onFilterChange,
+            handleFilterSubmit
          }}
         >
             {children}

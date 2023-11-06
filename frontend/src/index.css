@@ -5,6 +5,7 @@
 @layer components {
   .nav-item {
     @apply p-2
+    px-4
     mr-3
     my-4
     bg-indigo-500 
@@ -241,5 +242,21 @@
     rounded-full
     w-12 
     mb-2.5;
+  }
+
+  .filter__button {
+    @apply
+    flex 
+    items-center 
+    gap-1 
+    bg-indigo-700 
+    hover:bg-indigo-500 
+    text-white 
+    text-lg
+    font-semibold
+    rounded-md 
+    p-2 
+    px-4
+    duration-150
   }
 }
