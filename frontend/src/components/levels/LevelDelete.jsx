@@ -22,7 +22,10 @@ export const LevelDelete = ({ show, onClose, levelId }) => {
               Tem certeza que deseja deletar esse nível?
             </h3>
             <div className="flex justify-center gap-2">
-              <button className="delete-modal__button delete-modal__button--delete" onClick={() => deleteLevel(levelId)}>
+              <button
+                className="delete-modal__button delete-modal__button--delete"
+                onClick={() => deleteLevel(levelId)}
+              >
                 Deletar
               </button>
               <button className="delete-modal__button" onClick={onClose}>
@@ -30,7 +33,9 @@ export const LevelDelete = ({ show, onClose, levelId }) => {
               </button>
             </div>
             {errors.error && (
-              <span className="text-sm font-medium text-red-400">{errors.error}</span>
+              <span className="text-sm font-medium text-red-400">
+                {errors.error}
+              </span>
             )}
           </div>
         </Modal.Body>

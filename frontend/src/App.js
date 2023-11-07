@@ -5,13 +5,13 @@ import { DeveloperIndex } from "./components/developers/DeveloperIndex";
 import { LevelContextLayout } from "./layouts/LevelContextLayout";
 import { DeveloperContextLayout } from "./layouts/DeveloperContextLayout";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <div className="bg-gray-900">
       <div className="max-w-7xl mx-auto min-h-screen pt-4">
-        <ToastContainer autoClose={1000}/>
+        <ToastContainer autoClose={1000} />
         <Navbar />
         <Routes>
           <Route element={<LevelContextLayout />}>

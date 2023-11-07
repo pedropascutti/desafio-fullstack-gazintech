@@ -23,6 +23,21 @@
     sm:rounded-lg;
   }
 
+  .register__button {
+    @apply flex 
+    items-center 
+    gap-1 
+    bg-indigo-500 
+    hover:bg-indigo-700 
+    text-white 
+    text-lg
+    font-semibold
+    rounded-md 
+    p-2 
+    px-3
+    duration-150;
+  }
+
   .table {
     @apply w-full 
     text-sm

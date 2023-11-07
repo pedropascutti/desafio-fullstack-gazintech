@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { Modal } from "flowbite-react";
 import LevelContext from "../../Context/LevelContext";
 
-export const LevelEdit = ({ show, onClose, id }) => {
-  const { onChange, updateLevel, formValues, errors } = useContext(LevelContext);
+export const LevelEdit = ({ show, onClose }) => {
+  const { onChange, updateLevel, formValues } = useContext(LevelContext);
 
   return (
     <>

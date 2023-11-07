@@ -4,23 +4,7 @@ import { IconContext } from "react-icons";
 export const RegisterButton = ({ onClick }) => {
   return (
     <IconContext.Provider value={{ size: "20px" }}>
-      <button
-        onClick={onClick}
-        className="
-          flex 
-          items-center 
-          gap-1 
-          bg-indigo-500 
-          hover:bg-indigo-700 
-          text-white 
-          text-lg
-          font-semibold
-          rounded-md 
-          p-2 
-          px-3
-          duration-150
-        "
-      >
+      <button onClick={onClick} className="register__button">
         <FaCirclePlus /> Cadastrar
       </button>
     </IconContext.Provider>
