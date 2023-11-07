@@ -79,7 +79,7 @@ make run
 ```bash
 make migrate-seed
 ```
-**Assim que acabar de rodar esse comando a aplicação estará rodando**
+**Assim que acabar de rodar esses comandos a aplicação estará rodando com o banco de dados populado**
 
 ## Informações sobre a aplicação
 **A url padrão para acesso dos serviços é: `http://localhost`** <br />
