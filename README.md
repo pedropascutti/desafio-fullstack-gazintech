@@ -108,6 +108,6 @@ make run
 | ----------------- | ------- | ---- |
 | `mysql_container` |  admin  | root | 
 
-# Esse é o meu projeto! Muito obrigado! Sucesso!
+# Esse é o meu projeto, muito obrigado! Sucesso!
 
 
