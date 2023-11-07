@@ -72,7 +72,7 @@ Dentro da pasta execute o comando:
 npm install
 ```
 ### Acesse a pasta raiz do projeto
-A partir da pasta raiz basta executar (Obs: Pode demorar um pouco)
+A partir da pasta raiz basta executar no terminal (Obs: Pode demorar um pouco)
 ```bash
 make run 
 ```
