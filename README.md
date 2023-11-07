@@ -73,7 +73,7 @@ A partir da pasta raiz basta executar (Obs: Pode demorar um pouco)
 make run 
 ```
 ```bash
-make seed-db
+make migrate-seed
 ```
 **Assim que acabar de rodar esse comando a aplicação estara rodando**
 
