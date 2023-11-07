@@ -14,7 +14,7 @@ class DeveloperSeeder extends Seeder
     public function run(): void
     {
         Developer::factory()
-        ->count(25)
+        ->count(50)
         ->create();
     }
 }

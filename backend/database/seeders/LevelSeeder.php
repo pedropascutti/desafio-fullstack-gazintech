@@ -14,10 +14,22 @@ class LevelSeeder extends Seeder
     public function run(): void
     {
         Level::create([
-            'name' => 'Júnior'
+            'name' => 'Júnior A'
         ]);
         Level::create([
-            'name' => 'Pleno'
+            'name' => 'Júnior B'
+        ]);
+        Level::create([
+            'name' => 'Júnior C'
+        ]);
+        Level::create([
+            'name' => 'Pleno A'
+        ]);
+        Level::create([
+            'name' => 'Pleno B'
+        ]);
+        Level::create([
+            'name' => 'Pleno C'
         ]);
         Level::create([
             'name' => 'Sênior'
