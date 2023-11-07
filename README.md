@@ -112,9 +112,9 @@ make migrate-seed
 
 ## Acesso phpMyAdmin
 
-|      servidor     | usuário | senha|
-| ----------------- | ------- | ---- |
-| `mysql_container` |  admin  | root | 
+|           rota               |      servidor     | usuário | senha|
+| ---------------------------- | ----------------- | --------| ---- |
+|  http://localhost:8080       | `mysql_container` |  admin  | root | 
 
 # Esse é o meu projeto, muito obrigado! Sucesso!
 
