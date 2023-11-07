@@ -51,7 +51,7 @@ Copie o arquivo .env.example para um arquivo .env
 <br />
 Se preferir usar o terminal basta executar:
 ```bash
- cp .env.save .env
+ cp .env.example .env
 ```
 Com o arquivo **.env** criado, execute o seguinte comando:
 ```bash
