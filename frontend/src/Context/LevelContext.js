@@ -181,7 +181,8 @@ export const LevelProvider = ({ children }) => {
             onFilterChange,
             handleFilterSubmit,
             isFiltered,
-            clearFilter
+            clearFilter,
+            setErrors
          }}
         >
             {children}

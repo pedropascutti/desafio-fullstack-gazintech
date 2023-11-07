@@ -11,7 +11,7 @@ import { LevelFilter } from "./LevelFilter";
 import { NoRegisterFound } from "../NoRegisterFound";
 
 export const LevelIndex = () => {
-  const { levels, getLevels, getLevel, previousPage, nextPage, isLoading, isFiltered, clearFilter } = useContext(LevelContext);
+  const { levels, getLevels, getLevel, previousPage, nextPage, isLoading, isFiltered, clearFilter, setErrors } = useContext(LevelContext);
   const [id, setId] = useState(null);
 
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
@@ -29,7 +29,10 @@ export const LevelIndex = () => {
 
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const handleDeleteOpen = () => setOpenDeleteModal(true);
-  const handleDeleteClose = () => setOpenDeleteModal(false);
+  const handleDeleteClose = () => {
+    setOpenDeleteModal(false);
+    setErrors({});
+  }
 
   const handleDeleteClick = (e) => {
     setId(e.currentTarget.value);
