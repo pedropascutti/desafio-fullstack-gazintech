@@ -23,6 +23,7 @@ export const LevelProvider = ({ children }) => {
     const [meta, setMeta] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [filterFormValues, setFilterFormValues] = useState(initialFilterForm);
+    const [isFiltered, setIsFiltered] = useState(false);
 
     const setPaginatedData = (response) => {
         setLevels(response.data.data);
@@ -40,6 +41,7 @@ export const LevelProvider = ({ children }) => {
                             name: params.name
                         }
                     })
+                    setIsFiltered(true);
                     setPaginatedData(response);
                 } catch (e) {
                     setErrors(e);
@@ -50,8 +52,8 @@ export const LevelProvider = ({ children }) => {
             }
 
             setIsLoading(true);
-
             try {
+                setIsFiltered(false);
                 const response = await axios.get(link);
                 setPaginatedData(response);
             } catch (e) {
@@ -69,8 +71,23 @@ export const LevelProvider = ({ children }) => {
 
     const handleFilterSubmit = (e) => {
         e.preventDefault();
-        getLevels(`${baseUrl}/levels`, filterFormValues);
-      }
+        try {
+            getLevels(`${baseUrl}/levels`, filterFormValues);
+            toast.success("Filtro aplicado com sucesso", {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        } catch (e) {
+            setErrors(e);
+        }
+    }
+
+    const clearFilter = () => {
+        setFilterFormValues(initialFilterForm);
+        getLevels(`${baseUrl}/levels`);
+        toast.success("Filtro limpo com sucesso", {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    }
 
     const previousPage = async () => {
         if (filterFormValues !== initialFilterForm) {
@@ -162,7 +179,9 @@ export const LevelProvider = ({ children }) => {
             isLoading,
             filterFormValues,
             onFilterChange,
-            handleFilterSubmit
+            handleFilterSubmit,
+            isFiltered,
+            clearFilter
          }}
         >
             {children}

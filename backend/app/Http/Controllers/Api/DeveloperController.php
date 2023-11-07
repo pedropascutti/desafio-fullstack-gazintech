@@ -17,6 +17,7 @@ class DeveloperController extends Controller
         ->levelId($request->level_id)
         ->gender($request->gender)
         ->age($request->age)
+        ->hobby($request->hobby)
         ->paginate(10);
         foreach ($developers as $developer) {
             $developer["level"] = $developer->level->name;

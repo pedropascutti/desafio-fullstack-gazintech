@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Modal } from "flowbite-react";
 import LevelContext from "../../Context/LevelContext";
 
 export const LevelFilter = ({ show, onClose }) => {
-  const { onFilterChange, errors, handleFilterSubmit } = useContext(LevelContext);
+  const { onFilterChange, handleFilterSubmit, filterFormValues } = useContext(LevelContext);
 
   return (
     <>
@@ -24,7 +24,7 @@ export const LevelFilter = ({ show, onClose }) => {
                 autoComplete="true"
                 name="name"
                 onChange={onFilterChange}
-                required
+                value={filterFormValues["name"]}
               />
             </div>
             <button type="submit" className="form__body-button">
@@ -39,5 +39,5 @@ export const LevelFilter = ({ show, onClose }) => {
         </Modal.Footer>
       </Modal>
     </>
-  )
-}
+  );
+};

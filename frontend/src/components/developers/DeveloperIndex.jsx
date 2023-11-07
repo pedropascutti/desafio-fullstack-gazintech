@@ -2,15 +2,18 @@ import { useState, useEffect, useContext } from "react";
 import DeveloperContext from "../../Context/DeveloperContext";
 import { RegisterButton } from "../RegisterButton";
 import { FaPenToSquare, FaTrash } from "react-icons/fa6";
-import { MdOutlineNavigateNext, MdNavigateBefore } from "react-icons/md";
+import { MdOutlineNavigateNext, MdNavigateBefore, MdSearch, MdCancel } from "react-icons/md";
 import { IconContext } from "react-icons";
 import { DeveloperCreate } from "./DeveloperCreate";
 import { DeveloperEdit } from "./DeveloperEdit";
 import { DeveloperDelete } from "./DeveloperDelete";
+import { DeveloperFilter } from "./DeveloperFilter";
+import { NoRegisterFound } from "../NoRegisterFound";
 
 export const DeveloperIndex = () => {
-  const { getDevelopers, developers, getDeveloper, previousPage, nextPage, isLoading } = useContext(DeveloperContext);
+  const { getDevelopers, developers, getDeveloper, previousPage, nextPage, isLoading, isFiltered, clearFilter } = useContext(DeveloperContext);
   const [id, setId] = useState(null);
+  const skeleton = 10;
 
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
   const handleRegisterOpen = () => setOpenRegisterModal(true);
@@ -19,7 +22,6 @@ export const DeveloperIndex = () => {
   const [openEditModal, setOpenEditModal] = useState(false);
   const handleEditOpen = () => setOpenEditModal(true);
   const handleEditClose = () => setOpenEditModal(false);
-
   const handleEditClick = (e) => {
     setId(e.currentTarget.value);
     handleEditOpen();
@@ -28,7 +30,6 @@ export const DeveloperIndex = () => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const handleDeleteOpen = () => setOpenDeleteModal(true);
   const handleDeleteClose = () => setOpenDeleteModal(false);
-
   const handleDeleteClick = (e) => {
     setId(e.currentTarget.value);
     handleDeleteOpen();
@@ -37,12 +38,13 @@ export const DeveloperIndex = () => {
   const handlePreviousPageClick = () => {
     previousPage()
   }
-
   const handleNextPageClick = () => {
     nextPage();
   }
 
-  const skeleton = 10;
+  const [openFilterModal, setOpenFilterModal] = useState(false);
+  const handleFilterOpen = () => setOpenFilterModal(true);
+  const handleFilterClose = () => setOpenFilterModal(false);
 
   useEffect(() => {
     getDevelopers("http://localhost:8000/developers");
@@ -56,6 +58,7 @@ export const DeveloperIndex = () => {
     handleRegisterClose();
     handleEditClose();
     handleDeleteClose();
+    handleFilterClose();
   }, [developers]);
 
   return (
@@ -64,8 +67,18 @@ export const DeveloperIndex = () => {
         <table className="table">
           <caption className="table__caption">
             <div className="table__caption-content">
-              Listagem de Desenvolvedores
-              <RegisterButton onClick={handleRegisterOpen} />
+              <h2>Listagem de Desenvolvedores</h2>
+              <div className="table__caption-buttons">
+                {isFiltered && (
+                  <button className="clear__filter-button" onClick={() => clearFilter()}>
+                    <MdCancel /> Limpar filtros
+                  </button>
+                )}
+                <button className="filter__button" onClick={handleFilterOpen}>
+                  <MdSearch /> Filtrar
+                </button>
+                <RegisterButton onClick={handleRegisterOpen} />
+              </div>
             </div>
           </caption>
           <thead className="table__head">
@@ -165,7 +178,11 @@ export const DeveloperIndex = () => {
         </table>
       </div>
 
-      {!isLoading && (
+      {developers.length === 0 && (
+        <NoRegisterFound /> 
+      )}
+
+      {!isLoading && developers.length !== 0 &&(
         <nav className="pagination">
           <ul className="pagination__list">
             <li onClick={handlePreviousPageClick} className="pagination__list-item rounded-l-lg">
@@ -183,6 +200,7 @@ export const DeveloperIndex = () => {
       <DeveloperCreate show={openRegisterModal} onClose={handleRegisterClose} />
       <DeveloperEdit show={openEditModal} onClose={handleEditClose} />
       <DeveloperDelete show={openDeleteModal} onClose={handleDeleteClose} developerId={id} />
+      <DeveloperFilter show={openFilterModal} onClose={handleFilterClose} />
     </>
   );
 };

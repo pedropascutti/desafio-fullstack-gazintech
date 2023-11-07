@@ -217,7 +217,7 @@
   .pagination__list {
     @apply flex 
     items-center 
-    text-sm
+    text-sm;
   }
 
   .pagination__list-item {
@@ -233,7 +233,7 @@
     duration-100
     hover:text-gray-200
     hover:bg-slate-900
-    hover:cursor-pointer
+    hover:cursor-pointer;
   }
 
   .skeleton__content {
@@ -245,8 +245,7 @@
   }
 
   .filter__button {
-    @apply
-    flex 
+    @apply flex 
     items-center 
     gap-1 
     bg-indigo-700 
@@ -257,6 +256,28 @@
     rounded-md 
     p-2 
     px-4
-    duration-150
+    duration-150;
+  }
+
+  .clear__filter-button {
+    @apply flex 
+    items-center 
+    gap-1 
+    bg-gray-300
+    hover:bg-gray-400
+    hover:text-slate-900
+    text-slate-800 
+    text-sm
+    font-semibold
+    rounded-md 
+    p-1
+    px-2
+    duration-150;
+  }
+
+  .table__caption-buttons {
+    @apply flex
+    items-center
+    gap-4;
   }
 }

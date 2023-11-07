@@ -3,14 +3,15 @@ import { RegisterButton } from "../RegisterButton";
 import { LevelCreate } from "./LevelCreate";
 import LevelContext from "../../Context/LevelContext";
 import { FaPenToSquare, FaTrash } from "react-icons/fa6";
-import { MdOutlineNavigateNext, MdNavigateBefore, MdSearch } from "react-icons/md";
+import { MdOutlineNavigateNext, MdNavigateBefore, MdSearch, MdCancel } from "react-icons/md";
 import { IconContext } from "react-icons";
 import { LevelEdit } from "./LevelEdit";
 import { LevelDelete } from "./LevelDelete";
 import { LevelFilter } from "./LevelFilter";
+import { NoRegisterFound } from "../NoRegisterFound";
 
 export const LevelIndex = () => {
-  const { levels, getLevels, getLevel, previousPage, nextPage, isLoading } = useContext(LevelContext);
+  const { levels, getLevels, getLevel, previousPage, nextPage, isLoading, isFiltered, clearFilter } = useContext(LevelContext);
   const [id, setId] = useState(null);
 
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
@@ -48,9 +49,6 @@ export const LevelIndex = () => {
   const [openFilterModal, setOpenFilterModal] = useState(false);
   const handleFilterOpen = () => setOpenFilterModal(true);
   const handleFilterClose = () => setOpenFilterModal(false);
-  const handleFilterClick = () => {
-    handleFilterOpen();
-  }
 
   useEffect(() => {
     getLevels("http://localhost:8000/levels");
@@ -73,10 +71,15 @@ export const LevelIndex = () => {
         <table className="table">
           <caption className="table__caption">
             <div className="table__caption-content">
-              Listagem de Níveis
-              <div className="flex items-center gap-6">
-                <button className="filter__button" onClick={handleFilterClick}>
-                  <MdSearch/> Filtrar
+              <h2>Listagem de Níveis</h2>
+              <div className="table__caption-buttons">
+                {isFiltered && (
+                  <button className="clear__filter-button" onClick={() => clearFilter()}>
+                    <MdCancel /> Limpar filtros
+                  </button>
+                )}
+                <button className="filter__button" onClick={handleFilterOpen}>
+                  <MdSearch /> Filtrar
                 </button>
                 <RegisterButton onClick={handleRegisterOpen} />
               </div>
@@ -142,8 +145,12 @@ export const LevelIndex = () => {
           )}
         </table>
       </div>
+      
+      {levels.length === 0 && (
+        <NoRegisterFound /> 
+      )}
 
-      {!isLoading && (
+      {!isLoading && levels.length !== 0 && (
         <nav className="pagination">
           <ul className="pagination__list">
             <li onClick={handlePreviousPageClick} className="pagination__list-item rounded-l-lg">

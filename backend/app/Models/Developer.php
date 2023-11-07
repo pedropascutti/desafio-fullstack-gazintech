@@ -56,7 +56,7 @@ class Developer extends Model
     public function scopeHobby($query, $hobby = null)
     {
         if (!is_null($hobby)) {
-            $query->whereRaw('hobby', 'LIKE', "%$hobby%");
+            $query->where('hobby', 'LIKE', "%$hobby%");
         }
     }
 }
