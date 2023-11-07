@@ -1,5 +1,7 @@
-run: build up migrate seed 
-	
+run: build up  
+
+migrate-seed: migrate seed
+
 build:
 	@docker-compose build --no-cache
 
