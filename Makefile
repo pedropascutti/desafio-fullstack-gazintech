@@ -1,3 +1,5 @@
+run: build up migrate seed 
+	
 build:
 	@docker-compose build --no-cache
 
@@ -10,7 +12,6 @@ up:
 down:
 	@docker-compose down
 
-# BACKEND
 composer-update:
 	@docker exec -it backend_container bash -c "composer update"
 
