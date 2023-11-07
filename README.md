@@ -55,12 +55,13 @@ Se preferir usar o terminal basta executar:
 ```
 Com o arquivo **.env** criado, execute o seguinte comando:
 ```bash
-php artisan key:generate
+composer install
 ```
 **Ainda dentro da pasta _backend_ rode o comando:**
 ```bash
-composer install
+php artisan key:generate
 ```
+
 ### Acesse a pasta _frontend_ no diretório raiz do projeto
 Dentro da pasta execute o comando:
 ```bash
