@@ -19,10 +19,13 @@ export const DeveloperDelete = ({ show, onClose, developerId }) => {
               </IconContext.Provider>
             </div>
             <h3 className="delete-modal__message">
-                Tem certeza que deseja deletar esse desenvolvedor?
+              Tem certeza que deseja deletar esse desenvolvedor?
             </h3>
             <div className="flex justify-center gap-2">
-              <button className="delete-modal__button delete-modal__button--delete" onClick={() => deleteDeveloper(developerId)}>
+              <button
+                className="delete-modal__button delete-modal__button--delete"
+                onClick={() => deleteDeveloper(developerId)}
+              >
                 Deletar
               </button>
               <button className="delete-modal__button" onClick={onClose}>

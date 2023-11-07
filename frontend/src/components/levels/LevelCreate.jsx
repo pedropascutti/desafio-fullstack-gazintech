@@ -3,7 +3,7 @@ import { Modal } from "flowbite-react";
 import LevelContext from "../../Context/LevelContext";
 
 export const LevelCreate = ({ show, onClose }) => {
-  const { onChange, storeLevel, errors } = useContext(LevelContext);
+  const { onChange, storeLevel } = useContext(LevelContext);
 
   return (
     <>

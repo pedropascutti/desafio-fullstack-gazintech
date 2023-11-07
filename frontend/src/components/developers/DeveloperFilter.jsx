@@ -5,7 +5,6 @@ import DeveloperContext from "../../Context/DeveloperContext";
 export const DeveloperFilter = ({ show, onClose }) => {
   const {
     onFilterChange,
-    errors,
     handleFilterSubmit,
     getLevels,
     levels,

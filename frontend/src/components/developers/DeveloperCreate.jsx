@@ -56,7 +56,9 @@ export const DeveloperCreate = ({ show, onClose }) => {
                   ))}
                 </select>
                 {errors.level_id && (
-                  <span className="text-sm font-medium text-red-400">{errors.level_id[0]}</span>
+                  <span className="text-sm font-medium text-red-400">
+                    {errors.level_id[0]}
+                  </span>
                 )}
               </div>
               <div>
@@ -103,7 +105,9 @@ export const DeveloperCreate = ({ show, onClose }) => {
                   </div>
                 </div>
                 {errors.gender && (
-                  <span className="text-sm font-medium text-red-400">{errors.gender[0]}</span>
+                  <span className="text-sm font-medium text-red-400">
+                    {errors.gender[0]}
+                  </span>
                 )}
               </div>
             </div>
@@ -114,8 +118,8 @@ export const DeveloperCreate = ({ show, onClose }) => {
                 </label>
                 <input
                   type="date"
-                  min='1923-01-01'
-                  max={new Date().toISOString().split('T')[0]}
+                  min="1923-01-01"
+                  max={new Date().toISOString().split("T")[0]}
                   id="birth_date"
                   name="birth_date"
                   onChange={onChange}
