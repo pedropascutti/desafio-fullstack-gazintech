@@ -16,6 +16,14 @@ const initialForm = {
     hobby: ""
 }
 
+const initialFilterForm = {
+    name: "",
+    level_id: "",
+    gender: "",
+    age: "",
+    hobby: ""
+}
+
 export const DeveloperProvider = ({ children }) => {
     const [developers, setDevelopers] = useState([]);
     const [developer, setDeveloper] = useState([]);
@@ -25,6 +33,8 @@ export const DeveloperProvider = ({ children }) => {
     const [links, setLinks] = useState([]);
     const [meta, setMeta] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [filterFormValues, setFilterFormValues] = useState(initialFilterForm);
+    const [isFiltered, setIsFiltered] = useState(false);
     
     const setPaginatedData = (response) => {
         setDevelopers(response.data.data);
@@ -32,11 +42,34 @@ export const DeveloperProvider = ({ children }) => {
         setMeta(response.data.meta)
     }
 
-    const getDevelopers = async (link) => {
+    const getDevelopers = async (link, params = null) => {
         if (link !== null) {
-            setIsLoading(true);
+            if (params !== null) {
+                setIsLoading(true);
+                try {
+                    const response = await axios.get(link, {
+                        params: {
+                            name: params.name,
+                            level_id: params.level_id,
+                            gender: params.gender,
+                            age: params.age,
+                            hobby: params.hobby
+                        }
+                    })
+                    setIsFiltered(true);
+                    setPaginatedData(response);
+                } catch (e) {
+                    setErrors(e);
+                } finally {
+                    setIsLoading(false);
+                }
+                return
+            }
+
             
+            setIsLoading(true);
             try {
+                setIsFiltered(false);
                 const response = await axios.get(link);
                 setPaginatedData(response);
             } catch (e) {
@@ -47,11 +80,47 @@ export const DeveloperProvider = ({ children }) => {
         }
     }
 
+    const onFilterChange = (e) => {
+        const { name, value } = e.target;
+        setFilterFormValues({...filterFormValues, [name]: value})
+    }
+
+    const handleFilterSubmit = (e) => {
+        e.preventDefault();
+        try {
+            getDevelopers(`${baseUrl}/developers`, filterFormValues);
+            toast.success("Filtro aplicado", {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        } catch (e) {
+            setErrors(e);
+        }
+    }
+
+    const clearFilter = () => {
+        setFilterFormValues(initialFilterForm);
+        getDevelopers(`${baseUrl}/developers`);
+        toast.success("Filtro limpo com sucesso", {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    }
+
+
     const previousPage = async () => {
+        if (filterFormValues !== initialFilterForm) {
+            getDevelopers(links.prev, filterFormValues);
+            return
+        }
+
         await getDevelopers(links.prev);
     }
 
     const nextPage = async () => {
+        if (filterFormValues !== initialFilterForm) {
+            getDevelopers(links.next, filterFormValues);
+            return
+        }
+
         await getDevelopers(links.next);
     }
 
@@ -140,7 +209,12 @@ export const DeveloperProvider = ({ children }) => {
             getDeveloper,
             previousPage,
             nextPage,
-            isLoading
+            isLoading,
+            filterFormValues,
+            onFilterChange,
+            handleFilterSubmit,
+            isFiltered,
+            clearFilter
          }}
         >
             {children}
