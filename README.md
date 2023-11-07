@@ -79,8 +79,11 @@ make run
 ```bash
 make migrate-seed
 ```
-`Caso ocorra algum erro com esse comando espera alguns segundos e rode novamente, pode ser que o banco de dados não tenha subido ainda` <br />
+`Caso ocorra algum erro com esse comando espera alguns segundos e rode novamente, pode ser que o banco de dados não tenha subido ainda` 
+<br /> <br />
 **Assim que acabar de rodar esses comandos a aplicação estará rodando com o banco de dados populado**
+**Basta acessar `http://localhost:3000`**
+<br />
 
 ## Informações sobre a aplicação
 **A url padrão para acesso dos serviços é: `http://localhost`** <br />
