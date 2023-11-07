@@ -27,7 +27,8 @@ export const DeveloperIndex = () => {
     clearFilter,
   } = useContext(DeveloperContext);
 
-  const [id, setId] = useState(null);
+  const [idEdit, setIdEdit] = useState(null);
+  const [idDelete, setIdDelete] = useState(null);
   const skeleton = 10;
 
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
@@ -38,7 +39,7 @@ export const DeveloperIndex = () => {
   const handleEditOpen = () => setOpenEditModal(true);
   const handleEditClose = () => setOpenEditModal(false);
   const handleEditClick = (e) => {
-    setId(e.currentTarget.value);
+    setIdEdit(e.currentTarget.value);
     handleEditOpen();
   };
 
@@ -46,7 +47,7 @@ export const DeveloperIndex = () => {
   const handleDeleteOpen = () => setOpenDeleteModal(true);
   const handleDeleteClose = () => setOpenDeleteModal(false);
   const handleDeleteClick = (e) => {
-    setId(e.currentTarget.value);
+    setIdDelete(e.currentTarget.value);
     handleDeleteOpen();
   };
 
@@ -66,8 +67,15 @@ export const DeveloperIndex = () => {
   }, []);
 
   useEffect(() => {
-    if (id !== null) getDeveloper(id);
-  }, [id]);
+    if (idEdit !== null) {
+      getDeveloper(idEdit);
+      setIdEdit(null);
+    }
+  }, [idEdit]);
+
+  useEffect(() => {
+    if (idDelete !== null) getDeveloper(idDelete);
+  }, [idDelete]);
 
   useEffect(() => {
     handleRegisterClose();
@@ -224,7 +232,7 @@ export const DeveloperIndex = () => {
       <DeveloperDelete
         show={openDeleteModal}
         onClose={handleDeleteClose}
-        developerId={id}
+        developerId={idDelete}
       />
       <DeveloperFilter show={openFilterModal} onClose={handleFilterClose} />
     </>
