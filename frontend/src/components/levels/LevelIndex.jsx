@@ -28,7 +28,8 @@ export const LevelIndex = () => {
     setErrors,
   } = useContext(LevelContext);
 
-  const [id, setId] = useState(null);
+  const [idEdit, setIdEdit] = useState(null);
+  const [idDelete, setIdDelete] = useState(null);
   const skeleton = 6;
 
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
@@ -39,7 +40,7 @@ export const LevelIndex = () => {
   const handleEditOpen = () => setOpenEditModal(true);
   const handleEditClose = () => setOpenEditModal(false);
   const handleEditClick = (e) => {
-    setId(e.currentTarget.value);
+    setIdEdit(e.currentTarget.value);
     handleEditOpen();
   };
 
@@ -50,7 +51,7 @@ export const LevelIndex = () => {
     setErrors({});
   };
   const handleDeleteClick = (e) => {
-    setId(e.currentTarget.value);
+    setIdDelete(e.currentTarget.value);
     handleDeleteOpen();
   };
 
@@ -70,8 +71,15 @@ export const LevelIndex = () => {
   }, []);
 
   useEffect(() => {
-    if (id !== null) getLevel(id);
-  }, [id]);
+    if (idEdit !== null) {
+    getLevel(idEdit);
+    setIdEdit(null);
+  }
+  }, [idEdit]);
+
+  useEffect(() => {
+    if (idDelete !== null) getLevel(idDelete);
+  }, [idDelete]);
 
   useEffect(() => {
     handleRegisterClose();
@@ -197,7 +205,7 @@ export const LevelIndex = () => {
       <LevelDelete
         show={openDeleteModal}
         onClose={handleDeleteClose}
-        levelId={id}
+        levelId={idDelete}
       />
       <LevelFilter show={openFilterModal} onClose={handleFilterClose} />
     </>
