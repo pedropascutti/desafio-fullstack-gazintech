@@ -47,7 +47,7 @@ git clone https://github.com/PedroPascutti/desafio-fullstack-gazintech.git
 ```
 ### Acesse a pasta _backend_ no diretório raiz do projeto
 
-Copie o arquivo .env.save para um arquivo .env
+Copie o arquivo .env.example para um arquivo .env
 <br />
 Se preferir usar o terminal basta executar:
 ```bash
