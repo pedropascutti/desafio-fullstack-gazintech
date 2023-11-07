@@ -68,9 +68,11 @@ Dentro da pasta execute o comando:
 npm install
 ```
 ### Acesse a pasta raiz do diretório
-A partir da pasta raiz basta executar
+A partir da pasta raiz basta executar (Obs: Pode demorar um pouco)
 ```bash
-make run (Obs: Pode demorar um pouco)
+make run 
+```
+```bash
 make seed-db
 ```
 **Assim que acabar de rodar esse comando a aplicação estara rodando**
