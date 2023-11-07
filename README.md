@@ -45,8 +45,12 @@ git clone git@github.com:PedroPascutti/desafio-fullstack-gazintech.git
 ```bash
 git clone https://github.com/PedroPascutti/desafio-fullstack-gazintech.git
 ```
-### Acesse a pasta _backend_ no diretório raiz do projeto
+### Alguns comandos que podem ser utéis para essa transição de pastas pelo terminal:
+`cd backend` <br />
+`cd ..` para voltar um diretório <br />
+`cd frontend` <br />
 
+### Pelo terminal acesse a pasta _backend_ no diretório raiz do projeto
 Copie o arquivo .env.example para um arquivo .env
 <br />
 Se preferir usar o terminal basta executar:
@@ -62,7 +66,7 @@ composer install
 php artisan key:generate
 ```
 
-### Acesse a pasta _frontend_ no diretório raiz do projeto
+### Pelo terminal acesse a pasta _frontend_ no diretório raiz do projeto
 Dentro da pasta execute o comando:
 ```bash
 npm install
