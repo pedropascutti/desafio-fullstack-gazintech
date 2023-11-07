@@ -79,7 +79,7 @@ make run
 ```bash
 make migrate-seed
 ```
-`Caso ocorra algum erro com esse comando espera alguns segundos e rode novamente, pode ser que o banco de dados não tenha subido ainda`
+`Caso ocorra algum erro com esse comando espera alguns segundos e rode novamente, pode ser que o banco de dados não tenha subido ainda` <br />
 **Assim que acabar de rodar esses comandos a aplicação estará rodando com o banco de dados populado**
 
 ## Informações sobre a aplicação
