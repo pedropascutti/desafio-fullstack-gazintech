@@ -79,7 +79,7 @@ make run
 ```bash
 make migrate-seed
 ```
-**Assim que acabar de rodar esse comando a aplicação estara rodando**
+**Assim que acabar de rodar esse comando a aplicação estará rodando**
 
 ## Informações sobre a aplicação
 **A url padrão para acesso dos serviços é: `http://localhost`** <br />
